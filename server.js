@@ -18,7 +18,7 @@ const server = app.listen(PORT, () => {
 // Socket Config
 const io = new SocketServer(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://admin.socket.io/", "https://social-client-delta.vercel.app/"],
+    origin: ["http://localhost:5173", "https://admin.socket.io/", "https://social-client-delta.vercel.app/chatroom"],
   },
 });
 
