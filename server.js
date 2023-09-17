@@ -12,8 +12,8 @@ const activeConnections = new Map();
 const corsOrigins = [
   "http://localhost:5173",
   "https://admin.socket.io/",
-  "https://social-client-delta.vercel.app",
-  "https://social-client-delta.vercel.app/chatroom",
+  "https://social-by-haseeb.vercel.app",
+  "https://social-by-haseeb.vercel.app/chatroom",
 ];
 
 app.use(
