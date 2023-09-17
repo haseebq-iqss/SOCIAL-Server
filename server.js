@@ -9,7 +9,18 @@ const PORT = 5000;
 // Using Set Data Structure due to non-duplicate entry behaviour.
 const activeConnections = new Map();
 
-app.use(cors());
+const corsOrigins = [
+  "http://localhost:5173",
+  "https://admin.socket.io/",
+  "https://social-client-delta.vercel.app",
+  "https://social-client-delta.vercel.app/chatroom",
+];
+
+app.use(
+  cors({
+    origin: corsOrigins,
+  })
+);
 
 const server = app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
@@ -18,7 +29,7 @@ const server = app.listen(PORT, () => {
 // Socket Config
 const io = new SocketServer(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://admin.socket.io/", "https://social-client-delta.vercel.app/chatroom"],
+    origin: corsOrigins,
   },
 });
 
@@ -70,7 +81,7 @@ io.on("connection", (socket) => {
       socket.broadcast.to(room).emit("messages", {
         name,
         message: `${name} left this room.`,
-        time: Date.now()
+        time: Date.now(),
       }); // Emit to all in the room when user disconnects
     });
   });
